@@ -5,6 +5,7 @@ const app = express();
 const db = mongoose.connection;
 const PORT = process.env.PORT || 3000;
 const ToDo = require('./models/todos.js');
+const show = console.log;
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/unit2assessment';
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true });
@@ -40,6 +41,7 @@ app.post('/', (req, res)=>{
     ToDo.create(req.body, (error, createdToDo)=>{
         if(error) {
             show(error);
+            res.redirect('/');
         } else{
             res.redirect('/');
         }
